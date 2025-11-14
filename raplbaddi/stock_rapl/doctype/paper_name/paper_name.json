@@ -1,0 +1,96 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "creation": "2023-09-22 13:38:44.162666",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "paper_type",
+  "supplier",
+  "priority",
+  "add_supplier",
+  "section_break_tqlzm",
+  "items",
+  "priority_and_rates",
+  "attributes"
+ ],
+ "fields": [
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Box Paper Name Table",
+   "reqd": 1
+  },
+  {
+   "fieldname": "paper_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Paper Type",
+   "options": "\nDuplex\nCraft",
+   "reqd": 1
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "add_supplier",
+   "fieldtype": "Button",
+   "label": "Add Supplier"
+  },
+  {
+   "fieldname": "priority",
+   "fieldtype": "Int",
+   "label": "Priority"
+  },
+  {
+   "fieldname": "section_break_tqlzm",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "priority_and_rates",
+   "fieldtype": "Table",
+   "label": "Priority and Rates",
+   "options": "Paper Supplier Priority"
+  },
+  {
+   "fieldname": "attributes",
+   "fieldtype": "Table",
+   "label": "Attributes",
+   "options": "Paper Attributes Table"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-09-29 17:10:05.063530",
+ "modified_by": "Administrator",
+ "module": "Stock Rapl",
+ "name": "Paper Name",
+ "naming_rule": "By script",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

@@ -1,0 +1,149 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:plain_box_type",
+ "creation": "2023-06-22 16:23:29.368868",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "disabled",
+  "column_break_qxg9l",
+  "plain_box_type",
+  "jk_only",
+  "section_break_vtl1j",
+  "paper_names",
+  "priority_and_rates",
+  "section_break_lmtck",
+  "supplier",
+  "column_break_pgpxy",
+  "priority",
+  "add_supplier",
+  "check"
+ ],
+ "fields": [
+  {
+   "fieldname": "plain_box_type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Plain Box Type",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "jk_only",
+   "fieldtype": "Check",
+   "label": "JK Only"
+  },
+  {
+   "default": "0",
+   "fieldname": "disabled",
+   "fieldtype": "Check",
+   "label": "Disabled"
+  },
+  {
+   "fieldname": "section_break_vtl1j",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_qxg9l",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "paper_names",
+   "fieldtype": "Table",
+   "label": "Paper Names",
+   "options": "Paper Names Table"
+  },
+  {
+   "fieldname": "priority_and_rates",
+   "fieldtype": "Table",
+   "label": "Priority and Rates",
+   "options": "Paper Supplier Priority"
+  },
+  {
+   "fieldname": "section_break_lmtck",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "column_break_pgpxy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "priority",
+   "fieldtype": "Data",
+   "label": "Priority"
+  },
+  {
+   "fieldname": "add_supplier",
+   "fieldtype": "Button",
+   "label": "Add Supplier"
+  },
+  {
+   "default": "0",
+   "fieldname": "check",
+   "fieldtype": "Check",
+   "label": "Check"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "link_doctype": "Item",
+   "link_fieldname": "plain_box_type"
+  }
+ ],
+ "modified": "2023-10-03 14:44:31.570681",
+ "modified_by": "Administrator",
+ "module": "Stock Rapl",
+ "name": "Plain Box Type",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Packing Box Clerk",
+   "share": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales Rapl",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

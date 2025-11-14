@@ -1,0 +1,269 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-05-26 11:58:01.318283",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "item",
+  "date_of_production",
+  "capacity",
+  "brand_name",
+  "model_name",
+  "column_break_l2kot",
+  "element_type",
+  "from",
+  "to",
+  "production_line",
+  "contractor_name",
+  "manpower",
+  "production_duration",
+  "section_break_abtzp",
+  "element_tested",
+  "element_type_name",
+  "total_quantity",
+  "column_break_k6nm9",
+  "remarks",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Series",
+   "options": "DPE"
+  },
+  {
+   "fieldname": "item",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Item",
+   "options": "Geyser\nElement\nDesert Air Cooler",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "date_of_production",
+   "fieldtype": "Date",
+   "in_standard_filter": 1,
+   "label": "Date of Production",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.item ==\"Geyser\";",
+   "fieldname": "capacity",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Capacity",
+   "mandatory_depends_on": "eval:doc.item ==\"Geyser\";",
+   "options": "\n3\n6\n10\n15\n25\n35\n50\n70\n100"
+  },
+  {
+   "depends_on": "eval:doc.item ==\"Geyser\";",
+   "fieldname": "brand_name",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Brand Name",
+   "mandatory_depends_on": "eval:doc.item ==\"Geyser\";",
+   "options": "Brand"
+  },
+  {
+   "depends_on": "eval:doc.item ==\"Geyser\";",
+   "fieldname": "model_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Model Name",
+   "mandatory_depends_on": "eval:doc.item ==\"Geyser\";",
+   "options": "Geyser Model"
+  },
+  {
+   "fieldname": "column_break_l2kot",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.item ==\"Element\";",
+   "fieldname": "element_type",
+   "fieldtype": "Link",
+   "label": "Element Type",
+   "mandatory_depends_on": "eval:doc.item ==\"Element\";",
+   "options": "Item"
+  },
+  {
+   "depends_on": "eval:doc.item ==\"Geyser\";",
+   "fieldname": "from",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Serial No From",
+   "mandatory_depends_on": "eval:doc.item ==\"Geyser\";"
+  },
+  {
+   "depends_on": "eval:doc.item ==\"Geyser\";",
+   "fieldname": "to",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Serial No To",
+   "mandatory_depends_on": "eval:doc.item ==\"Geyser\";"
+  },
+  {
+   "depends_on": "eval:doc.item ==\"Geyser\";",
+   "fieldname": "production_duration",
+   "fieldtype": "Float",
+   "label": "Production Duration"
+  },
+  {
+   "fieldname": "section_break_abtzp",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.item ==\"Element\";",
+   "fieldname": "element_tested",
+   "fieldtype": "Int",
+   "label": "Number of Element Tested"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.item ==\"Element\";",
+   "fetch_from": "element_type.item_name",
+   "fieldname": "element_type_name",
+   "fieldtype": "Data",
+   "label": "Element Type Name"
+  },
+  {
+   "fieldname": "total_quantity",
+   "fieldtype": "Int",
+   "label": "Total Quantity",
+   "mandatory_depends_on": "eval:doc.item ==\"Element\";",
+   "read_only_depends_on": "eval:doc.item ==\"Geyser\";"
+  },
+  {
+   "fieldname": "column_break_k6nm9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Data",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Production Entry",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "production_line",
+   "fieldtype": "Link",
+   "label": "Production Line",
+   "options": "Production Lines"
+  },
+  {
+   "allow_on_submit": 1,
+   "fetch_from": "production_line.contractor_name",
+   "fieldname": "contractor_name",
+   "fieldtype": "Data",
+   "label": "Contractor Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "manpower",
+   "fieldtype": "Data",
+   "label": "Manpower"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-07-22 11:41:13.930146",
+ "modified_by": "Administrator",
+ "module": "Production Rapl",
+ "name": "Production Entry",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Stock Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Software Operator",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Production",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

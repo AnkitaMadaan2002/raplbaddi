@@ -1,0 +1,234 @@
+from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
+
+custom_fields = {
+    "Sales Order": [
+        {
+            "is_system_generated": 1,
+            "label": "Dispatch Remarks",
+            "fieldname": "dispatch_remarks",
+            "insert_after": "planning_remarks",
+            "fieldtype": "Data",
+            "depends_on": 'eval:frappe.session.user == "kumarom906@gmail.com" ||\n    frappe.session.user == "Administrator" || \n    frappe.session.user == "iamcasg@gmail.com" ||\n    frappe.session.user == "abhishek.rapl417@gmail.com"',
+            "read_only": 0,
+            "hidden": 0,
+            "no_copy": 0,
+            "allow_on_submit": 1,
+        },
+        {
+            "is_system_generated": 1,
+            "label": "Bill To Ship To",
+            "fieldname": "is_bill_to_ship_to",
+            "insert_after": "no_delivery_date",
+            "fieldtype": "Check",
+            "read_only": 0,
+            "hidden": 0,
+            "no_copy": 0,
+            "reqd": 0,
+            "allow_on_submit": 0,
+        },
+    ],
+    "Sales Order Item": [
+        {
+            "is_system_generated": 1,
+            "label": "Color",
+            "fieldname": "color",
+            "insert_after": "delivery_date",
+            "fieldtype": "Link",
+            "default": "Regular",
+            "options": "Color",
+            "reqd": 0,
+            "allow_on_submit": 1,
+            "in_list_view": 1,
+            "columns": 1,
+            "reqd": 1,
+        },
+        {
+            "is_system_generated": 1,
+            "label": "Remarks",
+            "fieldname": "remarks",
+            "insert_after": "color",
+            "fieldtype": "Text",
+            "allow_on_submit": 1,
+            "in_list_view": 1,
+            "columns": 1,
+            "read_only": 1,
+        },
+        {
+            "is_system_generated": 1,
+            "label": "Select Remarks",
+            "fieldname": "select_remarks",
+            "insert_after": "remarks",
+            "fieldtype": "Button",
+        }
+    ],
+    "Delivery Note": [
+        {
+            "is_system_generated": 1,
+            "label": "Branch",
+            "fieldname": "branch",
+            "insert_after": "company",
+            "fieldtype": "Link",
+            "default": "Real Appliances Private Limited",
+            "options": "Branch",
+            "reqd": 1,
+            "allow_on_submit": 0,
+        },
+        {
+            "is_system_generated": 1,
+            "label": "Driver Number",
+            "fieldname": "driver_number",
+            "insert_after": "lr_date",
+            "fieldtype": "Data",
+            "reqd": 1,
+            "allow_on_submit": 0,
+        },
+        {
+            "is_system_generated": 1,
+            "label": "Bilty/LR No,",
+            "fieldname": "bilty_no",
+            "insert_after": "driver_number",
+            "fieldtype": "Data",
+            "reqd": 1,
+            "allow_on_submit": 0,
+        },
+        {
+            "is_system_generated": 1,
+            "label": "Internal Receipt",
+            "fieldname": "internal_receipt",
+            "insert_after": "is_return",
+            "fieldtype": "Link",
+            "options": "Stock Entry",
+            "is_hidden": 1,
+            "read_only": 1,
+            "no_copy": 1,
+            "reqd": 0,
+            "allow_on_submit": 1,
+        },
+        {
+            "is_system_generated": 1,
+            "label": "Freight Status",
+            "fieldname": "freight_status",
+            "insert_after": "amount",
+            "fieldtype": "Select",
+            "default": "Already Paid by us",
+            "options": "Already Paid by us\nPlease pay to Driver",
+            "reqd": 1,
+            "allow_on_submit": 0,
+        },
+        {
+            "name": "Delivery Note-freight",
+            "label": "Freight",
+            "fieldname": "freight",
+            "insert_after": "gst_vehicle_type",
+            "fieldtype": "Table",
+            "options": "Freight Table",
+            "reqd": 1,
+            "allow_on_submit": 1,
+        },
+        {
+            "name": "Delivery Note-amount",
+            "label": "Amount",
+            "fieldname": "amount",
+            "insert_after": "vehicle_no",
+            "fieldtype": "Int",
+            "default": "0",
+            "reqd": 1,
+            "allow_on_submit": 1,
+        },
+        {
+            "label": "Vehicle No",
+            "fieldname": "custom_vehicle_no",
+            "insert_after": "gst_transporter_id",
+            "fieldtype": "Link",
+            "options": "Supplier",
+            "reqd": 1,
+        }
+    ],
+    "Customer Group": [
+        {
+            "is_system_generated": 1,
+            "label": "Abbreviation",
+            "fieldname": "abbreviation",
+            "insert_after": "is_group",
+            "fieldtype": "Data",
+            "reqd": 1,
+            "unique": 1,
+        },
+    ],
+    "Customer": [
+        {
+            "is_system_generated": 1,
+            "label": "Custom Is Internal Customer",
+            "fieldname": "custom_is_internal_customer",
+            "insert_after": "is_internal_customer",
+            "fieldtype": "Check",
+            "reqd": 0,
+        },
+    ],
+}
+
+
+def execute():
+    create_custom_fields(custom_fields)
+
+
+property_setters = [
+    {
+        "doctype": "Property Setter",
+        "name": "Sales Order-customer_group-hidden",
+        "is_system_generated": 0,
+        "doctype_or_field": "DocField",
+        "module": "Raplbaddi",
+        "doc_type": "Sales Order",
+        "field_name": "customer_group",
+        "property": "hidden",
+        "property_type": "Int",
+        "value": 0,
+    },
+    {
+        "name": "Supplier-supplier_group-allow_in_quick_entry",
+        "owner": "Administrator",
+        "docstatus": 0,
+        "idx": 0,
+        "is_system_generated": 1,
+        "doctype_or_field": "DocField",
+        "doc_type": "Supplier",
+        "field_name": "supplier_group",
+        "property": "allow_in_quick_entry",
+        "property_type": "Check",
+        "value": "1",
+        "doctype": "Property Setter",
+    },
+    {
+        "name": "Customer-is_internal_customer-hidden",
+        "docstatus": 0,
+        "idx": 0,
+        "is_system_generated": 1,
+        "doctype_or_field": "DocField",
+        "doc_type": "Customer",
+        "field_name": "is_internal_customer",
+        "property": "hidden",
+        "property_type": "Check",
+        "value": "1",
+        "doctype": "Property Setter",
+    },
+]
+
+fields_to_hide = ["vehicle_no", "driver_name", "driver"]
+
+hidden_properties = [
+    {
+        "doctype": "Property Setter",
+        "name": f"Purchase Receipt-{field}-hidden",
+        "is_system_generated": 1,
+        "doctype_or_field": "DocField",
+        "module": "Raplbaddi",
+        "doc_type": "Purchase Receipt",
+        "field_name": field,
+        "property": "hidden",
+        "property_type": "Int",
+        "value": "1",
+    }
+    for field in fields_to_hide
+]
+property_setters += hidden_properties
