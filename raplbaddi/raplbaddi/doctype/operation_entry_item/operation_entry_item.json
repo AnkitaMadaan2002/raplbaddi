@@ -1,17 +1,19 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-11-12 16:34:13.376481",
+ "creation": "2025-11-14 15:07:08.922975",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "item_code",
-  "item_name",
-  "qty_as_per_cycle_time",
-  "actual_qty_produced",
-  "qty__80_level",
-  "qty__100_level",
-  "remarks"
+  "operation_name",
+  "start_time",
+  "end_time",
+  "breakdown_time",
+  "standard_prod_100",
+  "standard_prod_80",
+  "actual_production",
+  "manpower"
  ],
  "fields": [
   {
@@ -21,41 +23,51 @@
    "options": "Item"
   },
   {
-   "fieldname": "item_name",
+   "fieldname": "operation_name",
    "fieldtype": "Data",
-   "label": "Item Name"
+   "label": "Operation Name"
   },
   {
-   "fieldname": "qty_as_per_cycle_time",
+   "fieldname": "start_time",
+   "fieldtype": "Time",
+   "label": "Start Time"
+  },
+  {
+   "fieldname": "end_time",
+   "fieldtype": "Time",
+   "label": "End Time"
+  },
+  {
+   "fieldname": "breakdown_time",
    "fieldtype": "Float",
-   "label": "Qty as per Cycle Time"
+   "label": "Breakdown Time"
   },
   {
-   "fieldname": "actual_qty_produced",
+   "fieldname": "standard_prod_100",
    "fieldtype": "Float",
-   "label": "Actual Qty Produced"
+   "label": "Standard Prod @100%"
   },
   {
-   "fieldname": "qty__80_level",
+   "fieldname": "standard_prod_80",
    "fieldtype": "Float",
-   "label": "Qty @ 80% Level"
+   "label": "Standard Prod @80%"
   },
   {
-   "fieldname": "qty__100_level",
+   "fieldname": "actual_production",
    "fieldtype": "Float",
-   "label": "Qty @ 100% Level"
+   "label": "Actual Production"
   },
   {
-   "fieldname": "remarks",
-   "fieldtype": "Small Text",
-   "label": "Remarks"
+   "fieldname": "manpower",
+   "fieldtype": "Int",
+   "label": "Manpower"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-11-12 16:39:56.158987",
+ "modified": "2025-11-14 15:13:44.421771",
  "modified_by": "Administrator",
  "module": "Raplbaddi",
  "name": "Operation Entry Item",

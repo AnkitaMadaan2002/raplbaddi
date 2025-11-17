@@ -1,26 +1,44 @@
-# Copyright (c) 2025, Nishant Bhickta and contributors
-# For license information, please see license.txt
-
-# import frappe
 from frappe.model.document import Document
-
+from datetime import datetime
 
 class OperationEntry(Document):
-	# begin: auto-generated types
-	# This code is auto-generated. Do not modify anything in this block.
 
-	from typing import TYPE_CHECKING
+    def validate(self):
 
-	if TYPE_CHECKING:
-		from frappe.types import DF
+        for row in self.operation_entry_item:
 
-		amended_from: DF.Link | None
-		cycle_time: DF.Float
-		date_of_production: DF.Date | None
-		depatment: DF.Link | None
-		manpower: DF.Int
-		remarks: DF.SmallText | None
-		shift: DF.Literal[None]
-		supervisor_name: DF.Link | None
-	# end: auto-generated types
-	pass
+            # skip empty rows
+            if not row.start_time or not row.end_time:
+                continue
+
+            cycle_time = self.cycle_time
+            if not cycle_time:
+                continue
+
+            # convert string to time object
+            def to_time(val):
+                if isinstance(val, str):
+                    try:
+                        return datetime.strptime(val, "%H:%M:%S").time()
+                    except:
+                        return datetime.strptime(val, "%H:%M").time()
+                return val
+
+            start_time = to_time(row.start_time)
+            end_time = to_time(row.end_time)
+
+            # combine into datetime
+            start = datetime.combine(datetime.today(), start_time)
+            end = datetime.combine(datetime.today(), end_time)
+
+            # total working seconds
+            total_seconds = (end - start).total_seconds()
+
+            # breakdown in seconds
+            breakdown_seconds = (row.breakdown_time or 0) * 60
+
+            available_time = total_seconds - breakdown_seconds
+
+            if available_time > 0:
+                row.standard_prod_100 = available_time / cycle_time
+                row.standard_prod_80 = row.standard_prod_100 * 0.80

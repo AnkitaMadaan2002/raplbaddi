@@ -1,23 +1,22 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-11-12 16:10:23.258469",
+ "creation": "2025-11-14 15:14:55.516458",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "section_break_gp3m",
+  "section_break_9f9r",
   "amended_from",
-  "depatment",
+  "department",
   "date_of_production",
-  "shift",
   "manpower",
   "supervisor_name",
   "cycle_time",
-  "remarks"
+  "operation_entry_item"
  ],
  "fields": [
   {
-   "fieldname": "section_break_gp3m",
+   "fieldname": "section_break_9f9r",
    "fieldtype": "Section Break"
   },
   {
@@ -31,20 +30,15 @@
    "search_index": 1
   },
   {
-   "fieldname": "depatment",
+   "fieldname": "department",
    "fieldtype": "Link",
-   "label": "Depatment",
+   "label": "Department",
    "options": "Department"
   },
   {
    "fieldname": "date_of_production",
    "fieldtype": "Date",
    "label": "Date of Production"
-  },
-  {
-   "fieldname": "shift",
-   "fieldtype": "Select",
-   "label": "Shift"
   },
   {
    "fieldname": "manpower",
@@ -63,16 +57,17 @@
    "label": "Cycle Time"
   },
   {
-   "fieldname": "remarks",
-   "fieldtype": "Small Text",
-   "label": "Remarks"
+   "fieldname": "operation_entry_item",
+   "fieldtype": "Table",
+   "label": "Operation Entry Item",
+   "options": "Operation Entry Item"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-11-12 16:33:19.339395",
+ "modified": "2025-11-14 15:19:06.356894",
  "modified_by": "Administrator",
  "module": "Raplbaddi",
  "name": "Operation Entry",
