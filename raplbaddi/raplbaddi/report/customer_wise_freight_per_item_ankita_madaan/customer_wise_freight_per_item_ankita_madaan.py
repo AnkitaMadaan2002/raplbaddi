@@ -58,8 +58,8 @@ def get_data(filters):
             dn.total_qty,
             CASE 
                 WHEN dn.docstatus = 0 THEN 'Draft'
+                WHEN dn.docstatus = 1 THEN 'Submitted'
                 WHEN dn.docstatus = 2 THEN 'Cancelled'
-                ELSE 'Submitted'
             END AS status,
         	ROUND(SUM(dn.amount) / NULLIF(SUM(dn.total_qty), 0), 2) AS freight_per_item,
             SUM(dn.amount) AS freight_amount
@@ -73,7 +73,7 @@ def get_data(filters):
         WHERE 
             {conditions}
         GROUP BY 
-            dn.customer_name, dni.item_code, dni.brand
+            dn.customer_name, dn.docstatus, dni.item_code, dni.brand
     """
 
     return frappe.db.sql(query, filters, as_dict=True)
